@@ -684,11 +684,29 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+                        <toolbar key="toolbar" implicitIdentifier="C43C4B25-4F5B-4477-A64B-927720CB33E1" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="small" id="SKx-7S-6zT">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="1FBA364C-46D5-49AC-944C-C23B3C80BEDA" label="Add " paletteLabel="Add Podcast" sizingBehavior="auto" id="YMu-tb-c94">
+                                    <nil key="toolTip"/>
+                                    <button key="view" verticalHuggingPriority="750" id="IHT-bS-9U2">
+                                        <rect key="frame" x="0.0" y="14" width="82" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="m8A-Rd-n7j">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </toolbarItem>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="YMu-tb-c94"/>
+                            </defaultToolbarItems>
+                        </toolbar>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -730,8 +748,8 @@
         <scene sceneID="dzt-FZ-XAc">
             <objects>
                 <viewController id="eS5-8R-xNB" customClass="PodcastsViewController" customModule="Podcasts" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="Pc6-gl-bfP">
-                        <rect key="frame" x="0.0" y="0.0" width="249" height="133"/>
+                    <view key="view" id="Pc6-gl-bfP">
+                        <rect key="frame" x="0.0" y="0.0" width="249" height="320"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9jv-uS-AYN">
@@ -759,14 +777,22 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eFT-b5-E84">
+                                <rect key="frame" x="84" y="132" width="81" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="f77-Gy-Xcy">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIB-IH-5xC">
-                                <rect key="frame" x="0.0" y="42" width="249" height="91"/>
-                                <clipView key="contentView" id="bcU-51-DEd">
-                                    <rect key="frame" x="1" y="0.0" width="247" height="90"/>
+                                <rect key="frame" x="0.0" y="42" width="249" height="278"/>
+                                <clipView key="contentView" autoresizesSubviews="NO" id="bcU-51-DEd">
+                                    <rect key="frame" x="1" y="0.0" width="247" height="277"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="dqJ-N9-xXk" viewBased="YES" id="Deu-Qm-58R">
-                                            <rect key="frame" x="0.0" y="0.0" width="247" height="65"/>
+                                        <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="dqJ-N9-xXk" viewBased="YES" id="Deu-Qm-58R">
+                                            <rect key="frame" x="0.0" y="0.0" width="247" height="252"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -828,7 +854,7 @@
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <tableHeaderView key="headerView" id="dqJ-N9-xXk">
+                                <tableHeaderView key="headerView" autoresizesSubviews="NO" id="dqJ-N9-xXk">
                                     <rect key="frame" x="0.0" y="0.0" width="247" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
@@ -871,8 +897,9 @@
                     </connections>
                 </viewController>
                 <customObject id="acG-fr-Q9y" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="UCx-X8-mc8"/>
             </objects>
-            <point key="canvasLocation" x="678.5" y="343"/>
+            <point key="canvasLocation" x="678.5" y="448.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Z95-Mc-K3Y">

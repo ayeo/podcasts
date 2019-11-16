@@ -10,7 +10,7 @@ class PodcastsViewController: NSViewController, NSTableViewDataSource, NSTableVi
     
     required init?(coder aDecoder: NSCoder) {
         delegate = NSApplication.shared.delegate as! AppDelegate
-        context = delegate.persistentContainer.viewContext
+        context = delegate.persistentContainer.viewContext        
         super.init(coder: aDecoder)
     }
         
