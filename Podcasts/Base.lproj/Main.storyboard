@@ -743,6 +743,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="addClicked:" target="eS5-8R-xNB" id="pxd-m6-EdO"/>
+                                </connections>
                             </button>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mu6-8m-KgK">
                                 <rect key="frame" x="0.0" y="21" width="249" height="21"/>
@@ -839,6 +842,9 @@
                             <constraint firstItem="mu6-8m-KgK" firstAttribute="leading" secondItem="Pc6-gl-bfP" secondAttribute="leading" id="yTI-El-1f6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="urlField" destination="mu6-8m-KgK" id="LtC-5r-km3"/>
+                    </connections>
                 </viewController>
                 <customObject id="acG-fr-Q9y" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
