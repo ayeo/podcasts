@@ -31,6 +31,15 @@ class PodcastsViewController: NSViewController, NSTableViewDataSource, NSTableVi
         } catch {}
     }
     
+    @IBAction func removeClicked(_ sender: NSButton) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Podcast")
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try context.execute(batchDeleteRequest)
+            getPodcasts()
+        } catch {}        
+    }
+    
     @IBAction func addClicked(_ sender: NSButton) {
         if let url = URL(string: urlField.stringValue) {
             URLSession.shared.dataTask(with: url) {
