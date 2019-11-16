@@ -18,14 +18,15 @@ class PodcastsViewController: NSViewController {
     }
     
     @IBAction func addClicked(_ sender: NSButton) {
-        let url = URL(string: urlField.stringValue)
-        URLSession.shared.dataTask(with: url!) {
-            (data: Data?, response: URLResponse?, error: Error?) in
-            if (data != nil) {
-                let parser = Parser()
-                parser.getMetadata(data: data!)
-            }
-        }.resume()
-        print("clicked")
+        if let url = URL(string: urlField.stringValue) {
+            URLSession.shared.dataTask(with: url) {
+                (data: Data?, response: URLResponse?, error: Error?) in
+                if (data != nil) {
+                    let parser = Parser()
+                    let info = parser.getMetadata(data: data!)
+                    print(info)
+                }
+            }.resume()
+        }
     }
 }
