@@ -16,7 +16,7 @@ class PodcastsViewController: NSViewController, NSTableViewDataSource, NSTableVi
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        urlField.stringValue = "http://www.espn.com/espnradio/podcast/feeds/itunes/podCast?id=2406595"
+        //urlField.stringValue = "http://www.espn.com/espnradio/podcast/feeds/itunes/podCast?id=2406595"
         getPodcasts()
     }
     
@@ -31,6 +31,19 @@ class PodcastsViewController: NSViewController, NSTableViewDataSource, NSTableVi
         } catch {}
     }
     
+    func podcastExists(url: String) -> Bool {
+        do {
+            let fetchy = Podcast.fetchRequest() as NSFetchRequest<Podcast>
+            fetchy.predicate = NSPredicate(format: "url == %@", url)
+            let podcasts = try context.fetch(fetchy)
+            
+            let x = podcasts.count > 0
+            return x
+        } catch {
+            return false;
+        }
+    }
+    
     @IBAction func removeClicked(_ sender: NSButton) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Podcast")
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
@@ -42,6 +55,10 @@ class PodcastsViewController: NSViewController, NSTableViewDataSource, NSTableVi
     
     @IBAction func addClicked(_ sender: NSButton) {
         if let url = URL(string: urlField.stringValue) {
+            if self.podcastExists(url: url.absoluteString) {
+                return
+            }
+            
             URLSession.shared.dataTask(with: url) {
                 (data: Data?, response: URLResponse?, error: Error?) in
                 if (data != nil) {
@@ -51,10 +68,13 @@ class PodcastsViewController: NSViewController, NSTableViewDataSource, NSTableVi
                     podcast.title = info.title
                     podcast.image = info.image
                     podcast.url = url.absoluteString
+                                        
                     self.delegate.saveAction(nil)
                     self.getPodcasts()
                 }
             }.resume()
+            
+            urlField.stringValue = ""
         }
     }
     
@@ -66,7 +86,7 @@ class PodcastsViewController: NSViewController, NSTableViewDataSource, NSTableVi
         let id = NSUserInterfaceItemIdentifier("podcastCell")
         let cell = tableView.makeView(withIdentifier: id, owner: self) as? NSTableCellView
         let podcast = podcasts[row]
-        cell?.textField?.stringValue = podcast.title!
+        cell?.textField?.stringValue = podcast.title ?? "UNKNOWN"
                 
         return cell
     }
