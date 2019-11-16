@@ -730,8 +730,8 @@
         <scene sceneID="dzt-FZ-XAc">
             <objects>
                 <viewController id="eS5-8R-xNB" customClass="PodcastsViewController" customModule="Podcasts" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="Pc6-gl-bfP">
-                        <rect key="frame" x="0.0" y="0.0" width="249" height="383"/>
+                    <view key="view" misplaced="YES" id="Pc6-gl-bfP">
+                        <rect key="frame" x="0.0" y="0.0" width="249" height="358"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9jv-uS-AYN">
@@ -759,13 +759,13 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIB-IH-5xC">
-                                <rect key="frame" x="0.0" y="42" width="249" height="341"/>
+                                <rect key="frame" x="0.0" y="42" width="249" height="291"/>
                                 <clipView key="contentView" id="bcU-51-DEd">
-                                    <rect key="frame" x="1" y="0.0" width="247" height="340"/>
+                                    <rect key="frame" x="1" y="0.0" width="247" height="290"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="dqJ-N9-xXk" viewBased="YES" id="Deu-Qm-58R">
-                                            <rect key="frame" x="0.0" y="0.0" width="247" height="315"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="247" height="265"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -773,7 +773,7 @@
                                             <tableColumns>
                                                 <tableColumn width="244" minWidth="40" maxWidth="1000" id="xPH-WP-mtd">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Podcasts list">
-                                                        <font key="font" metaFont="toolTip"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -784,7 +784,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="obl-jn-PG4">
+                                                        <tableCellView identifier="podcastCell" id="obl-jn-PG4">
                                                             <rect key="frame" x="1" y="1" width="244" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -812,6 +812,10 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="eS5-8R-xNB" id="I9W-Oe-vpG"/>
+                                                <outlet property="delegate" destination="eS5-8R-xNB" id="YIa-LW-UGE"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                 </clipView>
@@ -843,6 +847,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="podcastsList" destination="Deu-Qm-58R" id="ehh-Me-wUh"/>
                         <outlet property="urlField" destination="mu6-8m-KgK" id="LtC-5r-km3"/>
                     </connections>
                 </viewController>

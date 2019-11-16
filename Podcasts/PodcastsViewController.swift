@@ -1,9 +1,10 @@
 import Cocoa
 
-class PodcastsViewController: NSViewController {
+class PodcastsViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
     
     @IBOutlet weak var urlField: NSTextField!
-    
+    @IBOutlet weak var podcastsList: NSTableView!
+    private var podcasts: [Podcast] = []
     private var delegate: AppDelegate
     private var context: NSManagedObjectContext
     
@@ -16,7 +17,18 @@ class PodcastsViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         urlField.stringValue = "http://www.espn.com/espnradio/podcast/feeds/itunes/podCast?id=2406595"
-        
+        getPodcasts()
+    }
+    
+    func getPodcasts() {
+        let fetchy = Podcast.fetchRequest() as NSFetchRequest<Podcast>
+        fetchy.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        do {
+            self.podcasts = try context.fetch(fetchy)
+            DispatchQueue.main.async {
+                self.podcastsList.reloadData()
+            }
+        } catch {}
     }
     
     @IBAction func addClicked(_ sender: NSButton) {
@@ -29,10 +41,24 @@ class PodcastsViewController: NSViewController {
                     let podcast = Podcast(context: self.context)
                     podcast.title = info.title
                     podcast.image = info.image
-                    podcast.url = url.absoluteString                    
+                    podcast.url = url.absoluteString
                     self.delegate.saveAction(nil)
+                    self.getPodcasts()
                 }
             }.resume()
         }
+    }
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return podcasts.count
+    }        
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        let id = NSUserInterfaceItemIdentifier("podcastCell")
+        let cell = tableView.makeView(withIdentifier: id, owner: self) as? NSTableCellView
+        let podcast = podcasts[row]
+        cell?.textField?.stringValue = podcast.title!
+                
+        return cell
     }
 }
